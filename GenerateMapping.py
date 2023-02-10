@@ -68,7 +68,8 @@ def getVFATMapping(vfat):
     for ch in range(128):
         hrs = hiroseMapping[ hiroseMapping["vfatCh"] ==ch]["hrsPin"].iloc[0]
         strip = df_mapping[ df_mapping["Hirose"] ==hrs]["stripN"].iloc[0]
-        strip=strip+128*(phi-1)
+        if strip != -1:  ## Strip -1 reserved for "disconnected hirose pin"
+            strip=strip+128*(phi-1)
         tmp_data.append([vfat,ch,eta,strip])
     df = pd.DataFrame(tmp_data,columns=["vfatId","vfatCh","iEta","strip"])
     return df

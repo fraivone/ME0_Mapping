@@ -14,9 +14,10 @@ mappings = {
     2:pd.read_csv("MappingFiles/ME0Type2.csv"),
     3:pd.read_csv("MappingFiles/ME0Type3.csv"),
     4:pd.read_csv("MappingFiles/ME0Type4.csv"),
-    5:pd.read_csv("MappingFiles/ME0Type5.csv")
+    5:pd.read_csv("MappingFiles/ME0Type5.csv"),
+    6:pd.read_csv("MappingFiles/ME0Type6.csv"),
 }
-vfatToMappingType = {
+vfatToRoutingType = {
     0:4,
     1:4,
     2:4,
@@ -25,11 +26,11 @@ vfatToMappingType = {
     5:1,
     6:1,
     7:3,
-    8:1,
+    8:6,
     9:1,
-    10:4,
+    10:5,
     11:1,
-    12:4,
+    12:5,
     13:1,
     14:1,
     15:1,
@@ -63,7 +64,7 @@ def getVFATMapping(vfat):
     eta,phi = VFAT2iEta_iPhi(vfat)
 
     tmp_data = []
-    mappingType = vfatToMappingType[vfat]
+    mappingType = vfatToRoutingType[vfat]
     df_mapping = mappings[mappingType]
     for ch in range(128):
         hrs = hiroseMapping[ hiroseMapping["vfatCh"] ==ch]["hrsPin"].iloc[0]
